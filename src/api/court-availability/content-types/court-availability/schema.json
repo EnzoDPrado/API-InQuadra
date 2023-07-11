@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "court_availabilities",
+  "info": {
+    "singularName": "court-availability",
+    "pluralName": "court-availabilities",
+    "displayName": "CourtAvailability",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "weekDay": {
+      "type": "enumeration",
+      "enum": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "SpecialDays"
+      ]
+    },
+    "startsAt": {
+      "type": "time",
+      "required": true
+    },
+    "endsAt": {
+      "type": "time",
+      "required": true
+    },
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "dayUseService": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "court": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::court.court",
+      "inversedBy": "court_availabilities"
+    }
+  }
+}

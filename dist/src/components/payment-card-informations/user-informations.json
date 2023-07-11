@@ -1,0 +1,23 @@
+{
+    "collectionName": "components_payment_card_informations_user_informations",
+    "info": {
+        "displayName": "User-Informations",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "CVV": {
+            "type": "integer",
+            "required": true
+        },
+        "dueDate": {
+            "type": "date",
+            "required": true
+        },
+        "country": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::country.country"
+        }
+    }
+}

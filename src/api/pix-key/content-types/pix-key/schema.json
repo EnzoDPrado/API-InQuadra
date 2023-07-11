@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pix_keys",
+  "info": {
+    "singularName": "pix-key",
+    "pluralName": "pix-keys",
+    "displayName": "PixKey",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string",
+      "required": true
+    },
+    "establishment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::establishment.establishment",
+      "inversedBy": "pix_keys"
+    }
+  }
+}

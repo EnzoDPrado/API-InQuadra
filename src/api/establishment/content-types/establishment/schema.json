@@ -1,0 +1,86 @@
+{
+  "kind": "collectionType",
+  "collectionName": "establishments",
+  "info": {
+    "singularName": "establishment",
+    "pluralName": "establishments",
+    "displayName": "Establishment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "corporateName": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "cnpj": {
+      "type": "string",
+      "required": true,
+      "minLength": 14,
+      "maxLength": 18
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true,
+      "maxLength": 15,
+      "minLength": 10
+    },
+    "cellPhoneNumber": {
+      "type": "string",
+      "maxLength": 15,
+      "minLength": 10,
+      "required": true
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "fantasyName": {
+      "type": "string"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "address.address",
+      "required": true
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "establishment"
+    },
+    "pix_keys": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pix-key.pix-key",
+      "mappedBy": "establishment"
+    },
+    "amenities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::amenitie.amenitie",
+      "inversedBy": "establishments"
+    },
+    "courts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::court.court",
+      "mappedBy": "establishment"
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reservation.reservation",
+      "mappedBy": "establishment"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+    "kind": "collectionType",
+    "collectionName": "court_types",
+    "info": {
+        "singularName": "court-type",
+        "pluralName": "court-types",
+        "displayName": "CourtType",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "courts": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::court.court",
+            "mappedBy": "court_type"
+        }
+    }
+}

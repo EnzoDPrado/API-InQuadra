@@ -1,0 +1,73 @@
+{
+    "kind": "collectionType",
+    "collectionName": "courts",
+    "info": {
+        "singularName": "court",
+        "pluralName": "courts",
+        "displayName": "Court"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "photo": {
+            "allowedTypes": [
+                "images"
+            ],
+            "type": "media",
+            "multiple": true,
+            "required": true
+        },
+        "rating": {
+            "type": "decimal",
+            "max": 5,
+            "min": 0
+        },
+        "minimumScheduleValue": {
+            "type": "decimal",
+            "required": true,
+            "min": 0
+        },
+        "favorited_user": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "mappedBy": "favorite_courts"
+        },
+        "schedulings": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::scheduling.scheduling",
+            "mappedBy": "court"
+        },
+        "establishment": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::establishment.establishment",
+            "inversedBy": "courts"
+        },
+        "court_type": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::court-type.court-type",
+            "inversedBy": "courts"
+        },
+        "court_availabilities": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::court-availability.court-availability",
+            "mappedBy": "court"
+        },
+        "reservations": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::reservation.reservation",
+            "mappedBy": "court"
+        }
+    }
+}
