@@ -62,12 +62,6 @@
       "relation": "oneToMany",
       "target": "api::court-availability.court-availability",
       "mappedBy": "court"
-    },
-    "reservations": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reservation.reservation",
-      "mappedBy": "court"
     }
   }
 }

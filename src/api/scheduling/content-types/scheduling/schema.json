@@ -35,6 +35,17 @@
       "relation": "manyToOne",
       "target": "api::court.court",
       "inversedBy": "schedulings"
+    },
+    "dayUse": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "value": {
+      "type": "decimal"
+    },
+    "valuePayed": {
+      "type": "decimal"
     }
   }
 }

@@ -75,12 +75,6 @@
       "relation": "oneToMany",
       "target": "api::court.court",
       "mappedBy": "establishment"
-    },
-    "reservations": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::reservation.reservation",
-      "mappedBy": "establishment"
     }
   }
 }
