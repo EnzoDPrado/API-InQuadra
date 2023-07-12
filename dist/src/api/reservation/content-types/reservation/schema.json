@@ -39,6 +39,9 @@
             "relation": "manyToOne",
             "target": "api::establishment.establishment",
             "inversedBy": "reservations"
+        },
+        "value": {
+            "type": "decimal"
         }
     }
 }
