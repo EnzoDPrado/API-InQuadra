@@ -46,6 +46,17 @@
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "payedStatus": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "schedulings_owner"
     }
   }
 }

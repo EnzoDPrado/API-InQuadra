@@ -108,6 +108,12 @@
             "relation": "oneToOne",
             "target": "api::establishment.establishment",
             "inversedBy": "owner"
+        },
+        "schedulings_owner": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::scheduling.scheduling",
+            "mappedBy": "owner"
         }
     }
 }
