@@ -41,6 +41,11 @@
     },
     "valuePayed": {
       "type": "decimal"
+    },
+    "status": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }
