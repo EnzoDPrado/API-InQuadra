@@ -39,12 +39,6 @@
       "target": "plugin::users-permissions.user",
       "mappedBy": "favorite_courts"
     },
-    "schedulings": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::scheduling.scheduling",
-      "mappedBy": "court"
-    },
     "establishment": {
       "type": "relation",
       "relation": "manyToOne",

@@ -47,6 +47,17 @@
       "relation": "manyToOne",
       "target": "api::court.court",
       "inversedBy": "court_availabilities"
+    },
+    "status": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "schedulings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::scheduling.scheduling",
+      "mappedBy": "court_availability"
     }
   }
 }

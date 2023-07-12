@@ -16,36 +16,14 @@
             "type": "date",
             "required": true
         },
-        "startsAt": {
-            "type": "time",
-            "required": true
-        },
-        "endsAt": {
-            "type": "time",
-            "required": true
-        },
         "users": {
             "type": "relation",
             "relation": "manyToMany",
             "target": "plugin::users-permissions.user",
             "mappedBy": "schedulings"
         },
-        "court": {
-            "type": "relation",
-            "relation": "manyToOne",
-            "target": "api::court.court",
-            "inversedBy": "schedulings"
-        },
-        "value": {
-            "type": "decimal"
-        },
         "valuePayed": {
             "type": "decimal"
-        },
-        "status": {
-            "type": "boolean",
-            "default": true,
-            "required": true
         },
         "payedStatus": {
             "type": "boolean",
@@ -57,6 +35,12 @@
             "relation": "manyToOne",
             "target": "plugin::users-permissions.user",
             "inversedBy": "schedulings_owner"
+        },
+        "court_availability": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::court-availability.court-availability",
+            "inversedBy": "schedulings"
         }
     }
 }
