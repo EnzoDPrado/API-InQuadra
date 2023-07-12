@@ -12,6 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "schedulings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::scheduling.scheduling",
+      "mappedBy": "court_availability"
+    },
     "weekDay": {
       "type": "enumeration",
       "enum": [
@@ -23,7 +33,8 @@
         "Saturday",
         "Sunday",
         "SpecialDays"
-      ]
+      ],
+      "required": true
     },
     "startsAt": {
       "type": "time",
@@ -35,7 +46,8 @@
     },
     "value": {
       "type": "decimal",
-      "required": true
+      "required": true,
+      "min": 0
     },
     "dayUseService": {
       "type": "boolean",
@@ -52,12 +64,6 @@
       "type": "boolean",
       "default": true,
       "required": true
-    },
-    "schedulings": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::scheduling.scheduling",
-      "mappedBy": "court_availability"
     }
   }
 }

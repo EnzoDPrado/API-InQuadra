@@ -91,12 +91,6 @@
             "repeatable": false,
             "component": "payment-card-informations.user-informations"
         },
-        "schedulings": {
-            "type": "relation",
-            "relation": "manyToMany",
-            "target": "api::scheduling.scheduling",
-            "inversedBy": "users"
-        },
         "favorite_courts": {
             "type": "relation",
             "relation": "manyToMany",
@@ -108,6 +102,12 @@
             "relation": "oneToOne",
             "target": "api::establishment.establishment",
             "inversedBy": "owner"
+        },
+        "schedulings": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::scheduling.scheduling",
+            "mappedBy": "users"
         },
         "schedulings_owner": {
             "type": "relation",
