@@ -4,7 +4,8 @@
   "info": {
     "singularName": "court",
     "pluralName": "courts",
-    "displayName": "Court"
+    "displayName": "Court",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,12 +17,12 @@
       "required": true
     },
     "photo": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": true,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "rating": {
       "type": "decimal",
@@ -56,6 +57,10 @@
       "relation": "oneToMany",
       "target": "api::court-availability.court-availability",
       "mappedBy": "court"
+    },
+    "fantasy_name": {
+      "type": "string",
+      "required": false
     }
   }
 }
