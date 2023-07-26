@@ -50,6 +50,11 @@
     "payDay": {
       "type": "date",
       "required": false
+    },
+    "status": {
+      "type": "boolean",
+      "default": true,
+      "required": false
     }
   }
 }
