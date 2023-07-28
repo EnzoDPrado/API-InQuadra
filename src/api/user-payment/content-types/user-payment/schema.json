@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_payments",
+  "info": {
+    "singularName": "user-payment",
+    "pluralName": "user-payments",
+    "displayName": "UserPayment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "value": {
+      "type": "decimal",
+      "min": 0,
+      "required": true
+    },
+    "scheduling": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::scheduling.scheduling",
+      "inversedBy": "user_payments"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "user_payments"
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "cpf": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$",
+      "maxLength": 14
+    },
+    "card": {
+      "type": "component",
+      "repeatable": true,
+      "component": "payment-card-informations.user-informations"
+    }
+  }
+}

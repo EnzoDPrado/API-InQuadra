@@ -55,6 +55,12 @@
             "type": "boolean",
             "default": true,
             "required": false
+        },
+        "user_payments": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::user-payment.user-payment",
+            "mappedBy": "scheduling"
         }
     }
 }
