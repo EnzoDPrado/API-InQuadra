@@ -75,6 +75,32 @@
             "relation": "oneToMany",
             "target": "api::court.court",
             "mappedBy": "establishment"
+        },
+        "type": {
+            "type": "enumeration",
+            "enum": [
+                "Centro Esportivo",
+                "Academia",
+                "Parque Esportivo",
+                "Arena Esportiva",
+                "Clube de Lazer",
+                "Instalações Esportivas Municipais"
+            ],
+            "required": true
+        },
+        "photosAmenitie": {
+            "type": "media",
+            "multiple": true,
+            "required": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "favorited_user": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "favorite_establishments"
         }
     }
 }

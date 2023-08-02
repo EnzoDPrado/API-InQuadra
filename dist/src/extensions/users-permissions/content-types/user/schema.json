@@ -114,6 +114,12 @@
             "relation": "oneToMany",
             "target": "api::scheduling.scheduling",
             "mappedBy": "owner"
+        },
+        "favorite_establishments": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::establishment.establishment",
+            "mappedBy": "favorited_user"
         }
     }
 }
