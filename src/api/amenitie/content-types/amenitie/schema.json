@@ -4,7 +4,8 @@
   "info": {
     "singularName": "amenitie",
     "pluralName": "amenities",
-    "displayName": "Amenitie"
+    "displayName": "Amenitie",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,6 +22,14 @@
       "relation": "manyToMany",
       "target": "api::establishment.establishment",
       "mappedBy": "amenities"
+    },
+    "iconAmenitie": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
     }
   }
 }

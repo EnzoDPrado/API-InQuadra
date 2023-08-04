@@ -64,6 +64,10 @@
             "type": "boolean",
             "default": true,
             "required": true
+        },
+        "minValue": {
+            "type": "decimal",
+            "min": 0
         }
     }
 }
