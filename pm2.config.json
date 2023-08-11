@@ -1,0 +1,9 @@
+{
+  "name": "inquadra-back-api",
+  "script": "yarn",
+  "args": "start",
+  "watch": true,
+  "watch_options": {
+    "restart_delay": 5000
+  }
+}
