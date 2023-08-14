@@ -46,9 +46,9 @@
             "target": "api::establishment.establishment",
             "inversedBy": "courts"
         },
-        "court_type": {
+        "court_types": {
             "type": "relation",
-            "relation": "manyToOne",
+            "relation": "manyToMany",
             "target": "api::court-type.court-type",
             "inversedBy": "courts"
         },

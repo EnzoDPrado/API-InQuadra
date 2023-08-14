@@ -17,12 +17,6 @@
       "required": true,
       "unique": true
     },
-    "courts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::court.court",
-      "mappedBy": "court_type"
-    },
     "photo": {
       "allowedTypes": [
         "images",
@@ -33,6 +27,12 @@
       "type": "media",
       "multiple": false,
       "required": true
+    },
+    "courts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::court.court",
+      "mappedBy": "court_types"
     }
   }
 }
