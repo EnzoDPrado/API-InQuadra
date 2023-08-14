@@ -23,7 +23,7 @@
       "inversedBy": "schedulings"
     },
     "date": {
-      "type": "datetime",
+      "type": "date",
       "required": true
     },
     "users": {
