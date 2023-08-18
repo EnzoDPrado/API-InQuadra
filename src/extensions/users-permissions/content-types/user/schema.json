@@ -120,6 +120,12 @@
       "relation": "oneToMany",
       "target": "api::user-payment.user-payment",
       "mappedBy": "users_permissions_user"
+    },
+    "favorite_establishments": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::establishment.establishment",
+      "inversedBy": "favorited_users"
     }
   }
 }
