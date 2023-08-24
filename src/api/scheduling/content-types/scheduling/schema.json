@@ -65,6 +65,15 @@
     "cancelMessage": {
       "type": "text",
       "maxLength": 200
+    },
+    "activationKey": {
+      "type": "string",
+      "maxLength": 4
+    },
+    "activated": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }
