@@ -25,7 +25,7 @@
         },
         "phoneNumber": {
             "type": "string",
-            "required": true,
+            "required": false,
             "maxLength": 15,
             "minLength": 10
         },
@@ -33,7 +33,7 @@
             "type": "string",
             "maxLength": 15,
             "minLength": 10,
-            "required": true
+            "required": false
         },
         "photos": {
             "type": "media",
@@ -83,11 +83,12 @@
             "mappedBy": "favorite_establishments"
         },
         "logo": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
             "allowedTypes": [
                 "images"
-            ],
-            "type": "media",
-            "multiple": false
+            ]
         }
     }
 }
