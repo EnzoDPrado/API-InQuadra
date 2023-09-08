@@ -1,0 +1,56 @@
+trigger: none
+
+pr: none
+
+jobs:
+  - job: develop
+    displayName: 'Executar para cfs-develop'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    pool:
+      vmImage: "ubuntu-latest"
+    steps:
+      - checkout: self
+
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "18.15.0"
+        displayName: "Install Node.js"
+
+      - script: |
+          sudo apt-get update
+          sudo apt-get install curl -y
+          npm install
+          npm install next
+          npm install typescript @types/react @types/node
+          npm run build
+          DOMAIN="qodeless.io"
+          SUBDOMAIN="inquadra-api-uat"
+          RECORDS=$(curl -s -X GET \
+            -H "Content-Type: application/json" \
+            -H "Authorization: $(ENV_DIGITAL_TOKEN)" \
+            "https://api.digitalocean.com/v2/domains/$DOMAIN/records?type=A")
+          if echo "$RECORDS" | grep -q "\"name\":\"$SUBDOMAIN\"" ; then
+            echo "Subdomain already exists, skipping creation"
+            exit 0
+          fi
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: $(ENV_DIGITAL_TOKEN)" \
+            -d '{"type":"A","name":"inquadra-api-uat","data":"143.198.144.144","priority":null,"port":null,"ttl":1800,"weight":null,"flags":null,"tag":null}' \
+            "https://api.digitalocean.com/v2/domains/qodeless.io/records"
+        displayName: "Install dependencies, build and publish artifact"
+
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
+          includeRootFolder: false
+          archiveType: "zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+          replaceExistingArchive: true
+        displayName: "Archive files"
+
+      - task: PublishPipelineArtifact@1
+        inputs:
+          artifactName: "drop"
+          targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+        displayName: "Publish artifact"
