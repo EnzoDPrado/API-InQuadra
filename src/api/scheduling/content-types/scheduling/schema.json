@@ -36,6 +36,11 @@
       "type": "decimal",
       "min": 0
     },
+    "payedStatus": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
     "owner": {
       "type": "relation",
       "relation": "manyToOne",
@@ -65,26 +70,21 @@
       "default": false,
       "required": false
     },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "canceled",
+        "payed",
+        "waiting"
+      ],
+      "default": "waiting",
+      "required": true
+    },
     "serviceRate": {
       "type": "decimal",
       "default": 0,
       "min": 0,
       "max": 5
-    },
-    "status": {
-      "type": "boolean",
-      "default": true,
-      "required": false
-    },
-    "payedStatus": {
-      "type": "enumeration",
-      "enum": [
-        "waiting",
-        "payed",
-        "canceled"
-      ],
-      "default": "waiting",
-      "required": false
     }
   }
 }
