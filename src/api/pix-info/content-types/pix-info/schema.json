@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pix_infos",
+  "info": {
+    "singularName": "pix-info",
+    "pluralName": "pix-infos",
+    "displayName": "PixInfo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "text",
+      "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "pix_infos"
+    },
+    "value": {
+      "type": "decimal",
+      "required": true
+    },
+    "establishment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::establishment.establishment",
+      "inversedBy": "pix_infos"
+    }
+  }
+}

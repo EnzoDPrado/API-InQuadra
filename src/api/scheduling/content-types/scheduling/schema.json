@@ -51,11 +51,6 @@
       "type": "date",
       "required": false
     },
-    "status": {
-      "type": "boolean",
-      "default": true,
-      "required": false
-    },
     "user_payments": {
       "type": "relation",
       "relation": "oneToMany",
@@ -74,6 +69,22 @@
       "type": "boolean",
       "default": false,
       "required": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "canceled",
+        "payed",
+        "waiting"
+      ],
+      "default": "waiting",
+      "required": true
+    },
+    "serviceRate": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 5
     }
   }
 }

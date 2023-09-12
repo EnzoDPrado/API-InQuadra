@@ -89,6 +89,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "pix_infos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pix-info.pix-info",
+      "mappedBy": "establishment"
     }
   }
 }

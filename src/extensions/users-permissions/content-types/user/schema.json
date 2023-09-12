@@ -126,6 +126,12 @@
       "relation": "manyToMany",
       "target": "api::establishment.establishment",
       "inversedBy": "favorited_users"
+    },
+    "pix_infos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pix-info.pix-info",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
