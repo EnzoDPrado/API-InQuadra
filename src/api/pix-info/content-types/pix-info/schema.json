@@ -22,15 +22,16 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "pix_infos"
     },
-    "value": {
-      "type": "decimal",
-      "required": true
-    },
     "establishment": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::establishment.establishment",
       "inversedBy": "pix_infos"
+    },
+    "txid": {
+      "type": "text",
+      "required": true,
+      "unique": true
     }
   }
 }
