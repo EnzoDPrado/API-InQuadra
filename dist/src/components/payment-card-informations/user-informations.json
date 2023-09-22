@@ -18,6 +18,27 @@
             "type": "relation",
             "relation": "oneToOne",
             "target": "api::country.country"
+        },
+        "billingAddress": {
+            "type": "string",
+            "required": false
+        },
+        "city": {
+            "type": "string"
+        },
+        "state": {
+            "type": "string"
+        },
+        "cep": {
+            "type": "string",
+            "maxLength": 9,
+            "minLength": 8
+        },
+        "number": {
+            "type": "string"
+        },
+        "complement": {
+            "type": "string"
         }
     }
 }
