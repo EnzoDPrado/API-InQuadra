@@ -19,10 +19,6 @@
             "relation": "oneToOne",
             "target": "api::country.country"
         },
-        "billingAddress": {
-            "type": "string",
-            "required": false
-        },
         "city": {
             "type": "string"
         },
@@ -38,6 +34,12 @@
             "type": "string"
         },
         "complement": {
+            "type": "string"
+        },
+        "street": {
+            "type": "string"
+        },
+        "neighborhood": {
             "type": "string"
         }
     }
