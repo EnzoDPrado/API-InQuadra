@@ -65,12 +65,6 @@
       "default": false,
       "required": false
     },
-    "serviceRate": {
-      "type": "decimal",
-      "default": 0,
-      "min": 0,
-      "max": 5
-    },
     "status": {
       "type": "boolean",
       "default": true
@@ -83,6 +77,9 @@
         "canceled"
       ],
       "default": "waiting"
+    },
+    "serviceRate": {
+      "type": "decimal"
     }
   }
 }
