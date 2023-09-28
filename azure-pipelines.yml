@@ -1,10 +1,9 @@
 trigger: none
-
 pr: none
 
 jobs:
   - job: develop
-    displayName: 'Executar para cfs-develop'
+    displayName: 'Publishing InQuadra API'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
     pool:
       vmImage: "ubuntu-latest"
@@ -17,27 +16,7 @@ jobs:
         displayName: "Install Node.js"
 
       - script: |
-          sudo apt-get update
-          sudo apt-get install curl -y
-          npm install
-          npm install next
-          npm install typescript @types/react @types/node
-          npm run build
-          DOMAIN="qodeless.io"
-          SUBDOMAIN="inquadra-api-uat"
-          RECORDS=$(curl -s -X GET \
-            -H "Content-Type: application/json" \
-            -H "Authorization: $(ENV_DIGITAL_TOKEN)" \
-            "https://api.digitalocean.com/v2/domains/$DOMAIN/records?type=A")
-          if echo "$RECORDS" | grep -q "\"name\":\"$SUBDOMAIN\"" ; then
-            echo "Subdomain already exists, skipping creation"
-            exit 0
-          fi
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -H "Authorization: $(ENV_DIGITAL_TOKEN)" \
-            -d '{"type":"A","name":"inquadra-api-uat","data":"143.198.144.144","priority":null,"port":null,"ttl":1800,"weight":null,"flags":null,"tag":null}' \
-            "https://api.digitalocean.com/v2/domains/qodeless.io/records"
+          # ... (your existing build script)
         displayName: "Install dependencies, build and publish artifact"
 
       - task: ArchiveFiles@2
@@ -54,3 +33,29 @@ jobs:
           artifactName: "drop"
           targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
         displayName: "Publish artifact"
+
+  - job: deploy
+    displayName: 'Deploy to DigitalOcean'
+    dependsOn: develop
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/deploy'))
+    pool:
+      vmImage: "ubuntu-latest"
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "3.x"
+          addToPath: true
+
+      - script: |
+          # Define your DigitalOcean server SSH details
+          SERVER_IP=$(SERVER_IP)
+          SSH_USERNAME=$(SSH_USER)
+          SSH_KEY_PATH=$(SSH_KEY_PATH)
+
+          # Copy the deployment artifact to the server
+          scp -i "$SSH_KEY_PATH" -o StrictHostKeyChecking=no "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip" "$SSH_USERNAME@$SERVER_IP:$(FOLDER_PATH)"
+
+          # Connect to the server and deploy the artifact
+          ssh -i "$SSH_KEY_PATH" -o StrictHostKeyChecking=no "$SSH_USERNAME@$SERVER_IP" "cd $(FOLDER_PATH) && unzip -o $(Build.BuildId).zip && pm2 restart inquadra-back-api"
+
+        displayName: "Deploy to DigitalOcean"
